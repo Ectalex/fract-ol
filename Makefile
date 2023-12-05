@@ -9,7 +9,7 @@ CLINKS		= -ldl -lglfw -pthread -lm
 MLX			= minilibx
 LIBMLX 		= $(MLX)/libmlx42.a
 
-SRC 		= test.c\
+SRC 		= fractol.c\
 
 OBJ 		= $(SRC:.c=.o)
 

@@ -1,34 +1,46 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: albriffa <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/12/05 09:50:37 by albriffa          #+#    #+#              #
-#    Updated: 2023/12/05 10:34:22 by albriffa         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME 		= fractale
+CC 			= cc
+RM			= rm -f
+CLONE 		= git clone --depth=1
 
-Name = fractole
-OBJ = $(SRC:.c=.o)
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS 		+= 
+CLINKS		= -ldl -lglfw -pthread -lm
 
-SRC =	
+MLX			= minilibx
+LIBMLX 		= $(MLX)/libmlx42.a
 
-all = $(NAME)
+SRC 		= test.c\
 
-$(NAME) : $(OBJ)
-	$(NAME) $(OBJ)
+OBJ 		= $(SRC:.c=.o)
 
-%.o : %c
+all: $(NAME)
+
+bonus: $(NAME)
+
+$(NAME): $(LIBMLX) $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBMLX) $(CLINKS)
+
+$(LIBMLX): $(MLX)
+	cmake $(MLX) -B $(MLX)	
+	$(MAKE) -C $(MLX)
+
+$(MLX):
+	$(CLONE) https://github.com/kodokaii/MLX42.git $(MLX)
+
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-clean :
-	rm -f $(OBJ)
+clean:
+	$(RM) $(OBJ)
+	$(MAKE) clean -C $(MLX)
 
-fclean : clean
-	rm -f $(NAME)
+fclean: clean
+	$(RM) $(LIBMLX)
+	$(RM) $(NAME)
 
-re :fclean all
+clear: fclean
+	$(RM) -r $(MLX) 
+
+re: fclean all
+
+.PHONY:		all bonus clear clean fclean re

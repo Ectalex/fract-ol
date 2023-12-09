@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:47:21 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/09 12:10:08 by albriffa         ###   ########.fr       */
+/*   Updated: 2023/12/09 12:12:38 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ int	ft_mandelbrot(double x, double y)
 		z_i = 2 * z_i * tmp + c_i;
 		i++;
 	}
-	return (i != 49);
+	return (z_r * z_r + z_i * z_i);
 }

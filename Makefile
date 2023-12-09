@@ -35,7 +35,7 @@ $(MLX):
 	$(CLONE) https://github.com/kodokaii/MLX42.git $(MLX)
 
 $(FT):
-	git clone https://github.com/Ectalex/libft.git $(FT)
+	$(CLONE) https://github.com/Ectalex/libft.git $(FT)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -51,7 +51,8 @@ fclean: clean
 	$(RM) $(LIBFT)
 
 clear: fclean
-	$(RM) -r $(MLX) 
+	$(RM) -rf $(MLX)
+	$(RM) -rf $(FT)
 
 re: fclean all
 

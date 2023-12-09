@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:50:58 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/09 11:47:52 by albriffa         ###   ########.fr       */
+/*   Updated: 2023/12/09 12:45:14 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_pixel(mlx_image_t *image, t_mlx *mlx)
 		y = 0;
 		while (y < image->height)
 		{
-//			mlx_put_pixel(image, x, y, (x / y) * (y + x));
 			mlx_put_pixel(image, x, y, ft_mandelbrot(x, y));
 			y++;
 		}

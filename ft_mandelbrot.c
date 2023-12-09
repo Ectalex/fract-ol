@@ -6,29 +6,26 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:47:21 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/09 12:42:14 by albriffa         ###   ########.fr       */
+/*   Updated: 2023/12/09 15:56:41 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	ft_mandelbrot(double x, double y)
+int	ft_mandelbrot(double x, double y, t_mlx *mlx)
 {
-	double	image[2];
-	image[0] = WIDTH;
-	image[1] = HEIGHT;
 	double	zoom[2];
-	zoom[0] = image[0] / (0.6 - (-2.1));
-	zoom[1] = image[1] / (1.2 - (-1.2));
+	zoom[0] = WIDTH / (0.6 - (-2.1));
+	zoom[1] = HEIGHT / (1.2 - (-1.2));
 
 	if (x == 0)
 	{
-		while (x < image[0])
+		while (x < WIDTH)
 			x++;
 	}
 	if (y == 0)
 	{
-		while (y < image[1])
+		while (y < HEIGHT)
 			y++;
 	}
 	double	c[2];
@@ -49,6 +46,6 @@ int	ft_mandelbrot(double x, double y)
 		i++;
 	}
 	if (i == 50)
-		return (255);
+		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:13:48 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/09 11:50:21 by albriffa         ###   ########.fr       */
+/*   Updated: 2023/12/09 15:56:34 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_mlx
 
 void	ft_draw(void *param);
 void	ft_pixel(mlx_image_t *image, t_mlx *mlx);
-int	ft_mandelbrot(double x, double y);
+int	ft_mandelbrot(double x, double y, t_mlx *mlx);
+int     ft_color(int n);
 
 #endif

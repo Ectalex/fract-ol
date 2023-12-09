@@ -14,6 +14,7 @@ LIBFT		= $(FT)/libft.a
 
 SRC 		= fractol.c\
 		ft_mandelbrot.c\
+		color.c\
 
 OBJ 		= $(SRC:.c=.o)
 

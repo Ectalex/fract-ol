@@ -6,53 +6,50 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:47:21 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/06 17:37:47 by albriffa         ###   ########.fr       */
+/*   Updated: 2023/12/09 12:10:08 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-/*
-static void	ft_mandelbrot_iter(double z[2], double z2[2], double c[2])
-{
-	z[1] = 2 * z[0] * z[1] + c[1];
-	z[0] = z2[0] - z2[1] + c[0];
-	z2[0] = z[0] * z[0];
-	z2[1] = z[1] * z[1];
-}
-*/
-int	ft_mandelbrot(double x, double y, t_mlx *mlx)
-{
-	/*
-	double	z[2];
-	double	z2[2];
-	double	c[2];
-	double	i;
 
-	i = 0.0L;
-	z2[0] = z[0] * z[0];
-	z2[1] = z[1] * z[1];
-	while (i < 21.0L && z2[0] + z2[1] < 4)
+int	ft_mandelbrot(double x, double y)
+{
+/*	double	x1 = -2.1;
+	double	x2 = 0.6;
+	double	y1 = -1.2;
+	double	y2 = 1.2;
+	int	zoom = 100;
+	double	image_x = (x2 - x1) * zoom;
+	double	image_y = (y2 - y1) * zoom;
+
+	if (x == 0)
 	{
-		ft_mandelbrot_iter(z, z2, c);
+		while (x < image_x)
+			x++;
+	}
+	if (y == 0)
+	{
+		while (y < image_y)
+			y++;
+	}*/
+	double	c_r;
+	double	c_i;
+	double	z_r;
+	double	z_i;
+	double	tmp;
+	int	i;
+
+	c_r = x /*/ zoom + x1*/;
+	c_i = y /*/ zoom + y1*/;
+	z_r = 0;
+	z_i = 0;
+	i = 0;
+	while (z_r * z_r + z_i * z_i < 4 && i < 50)
+	{
+		tmp = z_r;
+		z_r = z_r * z_r - z_i * z_i + c_r;
+		z_i = 2 * z_i * tmp + c_i;
 		i++;
 	}
-	*/
-	int		n;
-	double	zr;
-	double	zi;
-	double	tmp;
-
-	zr = 0;
-	zi = 0;
-	n = 0;
-	while (n < 21.0L)
-	{
-		if ((zr * zr + zi * zi) > 4.0)
-			break ;
-		tmp = 2 * zr * zi + y;
-		zr = zr * zr - zi * zi + x;
-		zi = tmp;
-		n++;
-	}
-	return (tmp);
+	return (i != 49);
 }

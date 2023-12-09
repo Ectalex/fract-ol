@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:50:58 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/06 17:28:40 by albriffa         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:47:52 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,13 @@ static void	ft_init(t_mlx *mlx)
 void	ft_draw(void *param)
 {
 	t_mlx	*mlx;
-	static int	(*f[FRACT_COUNT])(float, float, t_mlx *)
-		= {&ft_mandelbrot};
 
 	mlx = param;
-	ft_pixel_iter(mlx->image, mlx, f[mlx->fract.type]);
+	ft_pixel(mlx->image, mlx);
 }
 
-void	ft_pixel_iter(mlx_image_t *image, t_mlx *mlx,
-			int (*f)(float, float, t_mlx *))
+void	ft_pixel(mlx_image_t *image, t_mlx *mlx)
 {
-	int	color;
 	float	x;
 	float	y;
 
@@ -44,16 +40,13 @@ void	ft_pixel_iter(mlx_image_t *image, t_mlx *mlx,
 		y = 0;
 		while (y < image->height)
 		{
-			/*
-			color = (*f)(
-					2 * x / (float)image->width - 1,
-					2 * y / (float)image->height - 1,
-					mlx);*/
-			mlx_put_pixel(image, x, y, ft_mandelbrot(x, y, mlx));
+//			mlx_put_pixel(image, x, y, (x / y) * (y + x));
+			mlx_put_pixel(image, x, y, ft_mandelbrot(x, y));
 			y++;
 		}
 		x++;
 	}
+
 }
 
 int	main(void)

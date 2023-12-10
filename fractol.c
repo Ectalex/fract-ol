@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:50:58 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/10 17:03:36 by albriffa         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:34:26 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	ft_init(t_mlx *mlx)
 	mlx->x2 = 0;
 	mlx->y2 = 0;
 	mlx->zoom_change = 0.1;
+	mlx->color = 3;
+	mlx->iter = 50;
 	mlx->win = mlx_init(WIDTH, HEIGHT, "TEST", true);
 	mlx->image = mlx_new_image(mlx->win, WIDTH, HEIGHT);
 	mlx_image_to_window(mlx->win, mlx->image, 0, 0);
@@ -47,9 +49,11 @@ void	ft_pixel(mlx_image_t *image, t_mlx *mlx)
 		while (y < image->height)
 		{
 			if (mlx->fract.type == 0)
-				mlx_put_pixel(image, x, y, ft_color(ft_mandelbrot(x, y, mlx)));
+				mlx_put_pixel(image, x, y, ft_color(ft_mandelbrot(x, y, mlx), mlx));
 			if (mlx->fract.type == 1)
-				mlx_put_pixel(image, x, y, ft_color(ft_julia(x, y, mlx)));
+				mlx_put_pixel(image, x, y, ft_color(ft_julia(x, y, mlx), mlx));
+			if (mlx->fract.type == 2)
+				mlx_put_pixel(image, x, y, ft_color(ft_burn_ship(x, y, mlx), mlx));
 			y++;
 		}
 		x++;
@@ -64,6 +68,14 @@ void	my_key(void *param)
 	mlx = param;
 	if (mlx_is_key_down(mlx->win, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx->win);
+	if (mlx_is_key_down(mlx->win, MLX_KEY_Z))
+		mlx->color = 0;
+	if (mlx_is_key_down(mlx->win, MLX_KEY_X))
+		mlx->color = 1;
+	if (mlx_is_key_down(mlx->win, MLX_KEY_C))
+		mlx->color = 2;
+	if (mlx_is_key_down(mlx->win, MLX_KEY_O))
+		mlx->color = 3;
 	if (mlx_is_key_down(mlx->win, MLX_KEY_LEFT))
 		mlx->x1 += 0.1;
 	if (mlx_is_key_down(mlx->win, MLX_KEY_RIGHT))
@@ -80,6 +92,10 @@ void	my_key(void *param)
 		mlx->y2 += 0.01;
 	if (mlx_is_key_down(mlx->win, MLX_KEY_S))
 		mlx->y2 -= 0.01;
+	if (mlx_is_key_down(mlx->win, MLX_KEY_MINUS))
+		mlx->iter -= 2;
+	if (mlx_is_key_down(mlx->win, MLX_KEY_EQUAL))
+		mlx->iter += 2;
 }
 
 void	my_scroll(double xdelta, double ydelta, void *param)
@@ -105,6 +121,8 @@ int	ft_fractol(int argc, char **argv, t_mlx *mlx)
 			mlx->fract.type = 0;
 		else if (!ft_strncmp(argv[1], "j", 2))
 			mlx->fract.type = 1;
+		else if (!ft_strncmp(argv[1], "b", 2))
+			mlx->fract.type = 2;
 		else
 			return (0);
 		return (1);
@@ -126,6 +144,6 @@ int	main(int argc, char **argv)
 		mlx_terminate(mlx.win);
 	}
 	else
-		write(1, "m = Mandelbrot\nj = Julia\n", 26);
+		write(1, "m = Mandelbrot\nj = Julia(0.3 0.5 ou 0.32 0.43)\nb = Burning Ship\n", 65);
 	return (EXIT_SUCCESS);
 }

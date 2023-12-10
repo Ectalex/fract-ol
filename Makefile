@@ -12,6 +12,7 @@ LIBMLX 		= $(MLX)/libmlx42.a
 SRC 		= fractol.c\
 		ft_mandelbrot.c\
 		ft_julia.c\
+		ft_burning_ship.c\
 		ft_strncmp.c\
 		color.c\
 

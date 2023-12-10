@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:47:21 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/10 16:04:30 by albriffa         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:17:37 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_mandelbrot(double x, double y, t_mlx *mlx)
 	z[0] = mlx->x2;
 	z[1] = mlx->y2;
 	i = 0;
-	while (z[0] * z[0] + z[1] * z[1] < 4 && i < 50)
+	while (z[0] * z[0] + z[1] * z[1] < 4 && i < mlx->iter)
 	{
 		tmp = z[0];
 		z[0] = z[0] * z[0] - z[1] * z[1] + c[0];

@@ -1,20 +1,23 @@
-NAME 		= fractale
+NAME 		= fractol
 CC 			= cc
 RM			= rm -f
 CLONE 		= git clone --depth=1
 
-CFLAGS 		+= 
+CFLAGS 		+= -Wall -Wextra -Werror
 CLINKS		= -ldl -lglfw -pthread -lm
 
 MLX			= minilibx
 LIBMLX 		= $(MLX)/libmlx42.a
 
-SRC 		= fractol.c\
+SRC 		= ft_fractol.c\
+		ft_draw.c\
+		ft_hook.c\
 		ft_mandelbrot.c\
 		ft_julia.c\
 		ft_burning_ship.c\
 		ft_strncmp.c\
-		color.c\
+		ft_atof.c\
+		ft_color.c\
 
 OBJ 		= $(SRC:.c=.o)
 

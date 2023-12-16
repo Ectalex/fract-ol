@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:13:48 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/16 10:43:59 by albriffa         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:26:46 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 typedef struct s_fractol
 {
 	double	zoom;
+	double	mx;
+	double	my;
 	double	x1;
 	double	x2;
 	double	y1;
@@ -33,7 +35,10 @@ typedef struct s_fractol
 	double	zoom_change;
 	double	iter;
 	int		color;
-	int		type;
+	int		choice;
+	int		x3;
+	int		y3;
+	char		*type;
 }	t_fractol;
 
 typedef struct s_mlx
@@ -50,10 +55,10 @@ void	my_key2(t_mlx *mlx);
 void	my_scroll(double xdelta, double ydelta, void *param);
 double	ft_atof(const char *str);
 double	ft_atof2(const char *str, double nb, size_t i);
-int		ft_mandelbrot(double x, double y, t_mlx *mlx);
-int		ft_julia(double x, double y, t_mlx *mlx);
-int		ft_burn_ship(double x, double y, t_mlx *mlx);
-int		ft_color(int n, t_mlx *mlx);
+void		ft_mandelbrot(double x, double y, t_mlx *mlx);
+void		ft_julia(double x, double y, t_mlx *mlx);
+void		ft_burn_ship(double x, double y, t_mlx *mlx);
+int		ft_color(int i, t_mlx *mlx);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif

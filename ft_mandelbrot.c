@@ -6,21 +6,23 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:47:21 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/16 10:41:18 by albriffa         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:28:49 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	ft_mandelbrot(double x, double y, t_mlx *mlx)
+#include <stdio.h>
+
+void	ft_mandelbrot(double x, double y, t_mlx *mlx)
 {
 	double	c[2];
 	double	z[2];
 	double	tmp;
 	int		i;
 
-	c[0] = (x / WIDTH * 3 - 2 - mlx->fract.x1) * mlx->fract.zoom;
-	c[1] = (y / HEIGHT * 3 - 1.5 - mlx->fract.y1) * mlx->fract.zoom;
+	c[0] = (x / WIDTH * 3 - 2 - mlx->fract.x1) * mlx->fract.zoom/* - mlx->fract.x3*/;
+	c[1] = (y / HEIGHT * 3 - 1.5 - mlx->fract.y1) * mlx->fract.zoom/* - mlx->fract.y3*/;
 	z[0] = mlx->fract.x2;
 	z[1] = mlx->fract.y2;
 	i = 0;
@@ -31,5 +33,5 @@ int	ft_mandelbrot(double x, double y, t_mlx *mlx)
 		z[1] = 2 * z[1] * tmp + c[1];
 		i++;
 	}
-	return (i);
+	mlx_put_pixel(mlx->image, x, y, ft_color(i, mlx));
 }

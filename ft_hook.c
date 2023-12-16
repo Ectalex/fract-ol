@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:50:58 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/16 10:39:19 by albriffa         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:29:15 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ void	my_key2(t_mlx *mlx)
 	if (mlx_is_key_down(mlx->win, MLX_KEY_O))
 		mlx->fract.color = 3;
 	if (mlx_is_key_down(mlx->win, MLX_KEY_LEFT))
-		mlx->fract.x1 += 0.1;
+		mlx->fract.x1 += mlx->fract.zoom_change;
 	if (mlx_is_key_down(mlx->win, MLX_KEY_RIGHT))
-		mlx->fract.x1 -= 0.1;
+		mlx->fract.x1 -= mlx->fract.zoom_change;
 	if (mlx_is_key_down(mlx->win, MLX_KEY_UP))
-		mlx->fract.y1 += 0.1;
+		mlx->fract.y1 += mlx->fract.zoom_change;
 	if (mlx_is_key_down(mlx->win, MLX_KEY_DOWN))
-		mlx->fract.y1 -= 0.1;
+		mlx->fract.y1 -= mlx->fract.zoom_change;
 }
 
 void	my_scroll(double xdelta, double ydelta, void *param)
@@ -60,6 +60,7 @@ void	my_scroll(double xdelta, double ydelta, void *param)
 
 	mlx = param;
 	(void)xdelta;
+	mlx_get_mouse_pos(mlx->win, &mlx->fract.x3, &mlx->fract.y3);
 	if (mlx->fract.zoom <= 0.2)
 		mlx->fract.zoom_change = 0.01;
 	else if (mlx->fract.zoom > 0.2)

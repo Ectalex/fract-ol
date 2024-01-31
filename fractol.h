@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:13:48 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/16 14:26:46 by albriffa         ###   ########.fr       */
+/*   Updated: 2024/01/31 14:49:28 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void		ft_julia(double x, double y, t_mlx *mlx);
 void		ft_burn_ship(double x, double y, t_mlx *mlx);
 int		ft_color(int i, t_mlx *mlx);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void		ft_zoom(t_mlx *mlx);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:50:58 by albriffa          #+#    #+#             */
-/*   Updated: 2024/01/31 15:30:44 by albriffa         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:08:16 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	my_key(void *param)
 		mlx->fract.iter += 2;
 }
 
+#include <stdio.h>
+
 void	my_key2(t_mlx *mlx)
 {
 	if (mlx_is_key_down(mlx->win, MLX_KEY_ESCAPE))
@@ -52,10 +54,6 @@ void	my_key2(t_mlx *mlx)
 		mlx->fract.y1 += mlx->fract.zoom_change;
 	if (mlx_is_key_down(mlx->win, MLX_KEY_DOWN))
 		mlx->fract.y1 -= mlx->fract.zoom_change;
-	if (mlx_is_key_down(mlx->win, MLX_KEY_M)) 
-		mlx->fract.zoom_change *= 2;
-	if (mlx_is_key_down(mlx->win, MLX_KEY_N)) 
-		mlx->fract.zoom_change /= 2;
 }
 
 #include <stdio.h>
@@ -66,15 +64,14 @@ void	my_scroll(double xdelta, double ydelta, void *param)
 
 	mlx = param;
 	(void)xdelta;
-	mlx_get_mouse_pos(mlx->win, &mlx->fract.x3, &mlx->fract.y3);
-	mlx->fract.x3 -= WIDTH / 2;
-	mlx->fract.y3 -= HEIGHT / 2;
-	mlx->fract.x1 -= mlx->fract.x3 / 225;
-	mlx->fract.y1 -= mlx->fract.y3 / 225;
 	if (ydelta < 0)
+	{
+		mlx->fract.zoom_change *= 1.1;
 		mlx->fract.zoom += mlx->fract.zoom_change;
+	}
 	if (ydelta > 0)
+	{
+		mlx->fract.zoom_change /= 1.1;
 		mlx->fract.zoom -= mlx->fract.zoom_change;
-	printf("x : %d\n", mlx->fract.x3);
-	printf("y : %d\n", mlx->fract.y3);
+	}
 }

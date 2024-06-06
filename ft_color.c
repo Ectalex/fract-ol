@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 13:52:41 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/16 13:03:13 by albriffa         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:51:33 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,7 @@ static int	ft_test_color(int r, int g, int b, int a)
 
 int	ft_color(int i, t_mlx *mlx)
 {
-	if (mlx->fract.color == 0)
-	{
-		if (i >= mlx->fract.iter)
-			return (ft_test_color(0, 0, 0, 255));
-		return (ft_test_color(3 * i, 1 * i, 10 * i, 255));
-	}
-	else if (mlx->fract.color == 1)
+	if (mlx->fract.color == 1)
 	{
 		if (i >= mlx->fract.iter)
 			return (ft_test_color(0, 0, 0, 255));
@@ -35,7 +29,8 @@ int	ft_color(int i, t_mlx *mlx)
 	{
 		if (i >= mlx->fract.iter)
 			return (ft_test_color(0, 0, 0, 255));
-		return (ft_test_color(30 * (i % 32) - i, 18 * (i % 92) - i, 10 * (i % 52) - i, 255));
+		return (ft_test_color(30 * (i % 32) - i, 18 * (i % 92) - i, 10
+				* (i % 52) - i, 255));
 	}
 	else if (mlx->fract.color == 3)
 	{

@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:50:58 by albriffa          #+#    #+#             */
-/*   Updated: 2024/01/31 14:49:45 by albriffa         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:03:50 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,31 @@ int	ft_fractol(int argc, char **argv, t_mlx *mlx)
 			mlx->fract.x2 = 0.0;
 			mlx->fract.y2 = 0.0;
 		}
-		if (!ft_strncmp(argv[1], "m", 2))
-		{
-			mlx->fract.choice = 0;
-			mlx->fract.type = "Mandelbrot";
-		}
-		else if (!ft_strncmp(argv[1], "j", 2))
-		{
-			mlx->fract.choice = 1;
-			mlx->fract.type = "Julia";
-		}
-		else if (!ft_strncmp(argv[1], "b", 2))
-		{
-			mlx->fract.choice = 2;
-			mlx->fract.type = "Burning Ship";
-		}
-		else
-			return (0);
-		return (1);
+		return (choice(argv, mlx));
 	}
 	return (0);
+}
+
+int	choice(char **argv, t_mlx *mlx)
+{
+	if (!ft_strncmp(argv[1], "m", 2))
+	{
+		mlx->fract.choice = 0;
+		mlx->fract.type = "Mandelbrot";
+	}
+	else if (!ft_strncmp(argv[1], "j", 2))
+	{
+		mlx->fract.choice = 1;
+		mlx->fract.type = "Julia";
+	}
+	else if (!ft_strncmp(argv[1], "b", 2))
+	{
+		mlx->fract.choice = 2;
+		mlx->fract.type = "Burning Ship";
+	}
+	else
+		return (0);
+	return (1);
 }
 
 int	main(int argc, char **argv)

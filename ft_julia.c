@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 14:47:21 by albriffa          #+#    #+#             */
-/*   Updated: 2023/12/16 13:44:59 by albriffa         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:53:12 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	ft_julia(double x, double y, t_mlx *mlx)
 	double	tmp;
 	int		i;
 
-	z[0] = (x / WIDTH * 3 - 1.5 - (mlx->fract.x1 / 2)) * mlx->fract.zoom - mlx->fract.x1;
-	z[1] = (y / HEIGHT * 3 - 1.5 - (mlx->fract.y1 / 2)) * mlx->fract.zoom - mlx->fract.y1;
+	z[0] = (x / WIDTH * 3 - 1.5 - (mlx->fract.x1 / 2))
+		* mlx->fract.zoom - mlx->fract.x1;
+	z[1] = (y / HEIGHT * 3 - 1.5 - (mlx->fract.y1 / 2))
+		* mlx->fract.zoom - mlx->fract.y1;
 	c[0] = mlx->fract.x2;
 	c[1] = mlx->fract.y2;
 	i = 0;

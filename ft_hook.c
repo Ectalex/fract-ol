@@ -6,7 +6,7 @@
 /*   By: albriffa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:50:58 by albriffa          #+#    #+#             */
-/*   Updated: 2024/06/06 17:08:16 by albriffa         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:52:53 by albriffa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,10 @@ void	my_key(void *param)
 		mlx->fract.iter += 2;
 }
 
-#include <stdio.h>
-
 void	my_key2(t_mlx *mlx)
 {
 	if (mlx_is_key_down(mlx->win, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx->win);
-	if (mlx_is_key_down(mlx->win, MLX_KEY_Z))
-		mlx->fract.color = 0;
 	if (mlx_is_key_down(mlx->win, MLX_KEY_X))
 		mlx->fract.color = 1;
 	if (mlx_is_key_down(mlx->win, MLX_KEY_C))
@@ -55,8 +51,6 @@ void	my_key2(t_mlx *mlx)
 	if (mlx_is_key_down(mlx->win, MLX_KEY_DOWN))
 		mlx->fract.y1 -= mlx->fract.zoom_change;
 }
-
-#include <stdio.h>
 
 void	my_scroll(double xdelta, double ydelta, void *param)
 {
